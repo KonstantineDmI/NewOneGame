@@ -43,6 +43,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public GameObject codePanel;
+
         // Use this for initialization
         private void Start()
         {
@@ -56,12 +58,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+           
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+            PanelActive();
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -80,7 +85,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir.y = 0f;
             }
-
+            
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
 
@@ -255,6 +260,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        void PanelActive()
+        {
+            if(codePanel.activeSelf == true)
+            {
+                m_WalkSpeed = 0;
+            }
+            else
+            {
+                m_WalkSpeed = 2;
+            }
         }
     }
 }

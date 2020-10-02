@@ -8,7 +8,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class FirstScene : MonoBehaviour
 {
 
-    float timer = 7;
+    float timer = 1;
     float currentTime = 0;
     public FirstPersonController fpc;
     public Image firstFrame;

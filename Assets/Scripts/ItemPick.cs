@@ -30,48 +30,43 @@ public class ItemPick : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10f))
         {
-            if (hit.collider.tag == "Message")
+            if(hit.collider.tag == "Message" || hit.collider.tag == "CodePanel")
             {
-                txt.text = "Подобрать письмо";
-                text.SetActive(true);
-                if (Input.GetKeyDown(takeButton))
-                {
-                    message.SetActive(true);
-                }
                
-                
-                
-                
+
+                if (hit.collider.tag == "Message")
+                {
+                    txt.text = hit.collider.name;
+                    text.SetActive(true);
+                    if (Input.GetKeyDown(takeButton))
+                    {
+                        message.SetActive(true);
+                    }
+
+
+
+
+                }
+                if (hit.collider.tag == "CodePanel")
+                {
+                    txt.text = hit.collider.name;
+                    text.SetActive(true);
+                    if (Input.GetKeyDown(takeButton))
+                    {
+                        codePanel.SetActive(true);
+
+
+                    }
+
+
+
+                }
             }
             else
             {
                 text.SetActive(false);
             }
-
-            if(hit.collider.tag == "CodePanel")
-            {
-                txt.text = "Кодовая панель";
-                text.SetActive(true);
-                if (Input.GetKeyDown(takeButton))
-                {
-                    codePanel.SetActive(true);
-                    
-                   
-                }
-                
-               
-               
-            }
-            else
-            {
-                text.SetActive(false);
-            }
-            
-
-
-
-            
-
+           
         }
 
 

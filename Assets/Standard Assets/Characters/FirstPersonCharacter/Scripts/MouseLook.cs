@@ -16,7 +16,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public float smoothTime = 5f;
         public bool lockCursor = true;
         public GameObject codePanel;
-        bool panelState;
 
 
         private Quaternion m_CharacterTargetRot;
@@ -78,18 +77,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void InternalLockUpdate()
         {
                 
-                codePanel = GameObject.FindGameObjectWithTag("Code");
+                
                 
                 if (Input.GetKeyUp(KeyCode.Escape))
                 {
                     m_cursorIsLocked = false;
-                   
                 }
-                else if(panelState == false)
+                else if(Input.GetKeyUp(KeyCode.Mouse2))
                 {
                     m_cursorIsLocked = true;
-                    
-
                 }
 
                 if (m_cursorIsLocked)
@@ -98,6 +94,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     Cursor.visible = false;
                     
 
+
                 }
                 else if (!m_cursorIsLocked)
                 {
@@ -105,7 +102,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     Cursor.visible = true;
                    
 
+
                 }
+
+            if (codePanel.activeSelf == true)
+            {
+                XSensitivity = 0;
+                YSensitivity = 0;
+                m_cursorIsLocked = false;
+            }
+            else
+            {
+
+                XSensitivity = 2;
+                YSensitivity = 2;
+                m_cursorIsLocked = true;
+            }
             
                
             
